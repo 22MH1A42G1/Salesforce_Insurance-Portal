@@ -1,0 +1,40 @@
+<template>
+  <lightning-card title="My Policies">
+    <div class="slds-grid slds-wrap">
+      <template if:true={policies}>
+        <template for:each={policies} for:item="item">
+          <div key={item.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
+            <lightning-card>
+              <div class="slds-p-around_medium">
+                <h3 class="slds-text-heading_small">{item.Policy__r.Name}</h3>
+                <p><strong>Type:</strong> {item.Policy__r.Policy_Type__c}</p>
+                <p><strong>Coverage:</strong> ₹{item.Policy__r.Coverage_Amount__c}</p>
+                <p><strong>Premium:</strong> ₹{item.Policy__r.Premium_Amount__c}</p>
+                <p><strong>Term:</strong> {item.Policy__r.Terms_Duration__c}</p>
+                <hr />
+
+                <!-- Display Payment Due Dates -->
+                <template if:true={item.Payments__r}>
+                  <template for:each={item.Payments__r} for:item="pay">
+                    <p key={pay.Id}><strong>Due Date:</strong> {pay.Due_Date__c}</p>
+                  </template>
+                </template>
+
+              </div>
+            </lightning-card>
+          </div>
+        </template>
+      </template>
+
+      <template if:true={error}>
+        <div class="slds-text-color_error slds-p-around_medium">{error}</div>
+      </template>
+
+      <template if:true={isLoading}>
+        <div class="slds-p-around_medium">
+          <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

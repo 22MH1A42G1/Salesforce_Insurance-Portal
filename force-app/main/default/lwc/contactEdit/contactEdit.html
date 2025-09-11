@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Create Contact using LDS" icon-name="standard:contact">
+        
+        <lightning-record-edit-form 
+            object-api-name="Contact"
+            onsuccess={handleSuccess}
+            onsubmit={handleSubmit}
+            class="form"
+        >
+            <!-- First Name -->
+            <lightning-input-field field-name="FirstName"></lightning-input-field>
+            <!-- Last Name -->
+            <lightning-input-field field-name="LastName"></lightning-input-field>
+            <!-- Email -->
+            <lightning-input-field field-name="Email"></lightning-input-field>
+            <!-- Phone -->
+            <lightning-input-field field-name="Phone"></lightning-input-field>
+
+            <div class="slds-m-top_small">
+                <lightning-button type="submit" label="Create Contact" variant="brand"></lightning-button>
+                <lightning-button label="Clear Fields" onclick={clearFields} class="slds-m-left_small"></lightning-button>
+            </div>
+        </lightning-record-edit-form>
+        
+    </lightning-card>
+</template>

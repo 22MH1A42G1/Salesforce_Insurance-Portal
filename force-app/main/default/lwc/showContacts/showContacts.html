@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Showing Contact records">
+    <lightning-button label="Show contacts" onclick={clickhandler}></lightning-button>
+    <template lwc:if={data}>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={clom}>
+        </lightning-datatable>
+    </div>
+    </template>
+    <template lwc:if={error}>
+        <p> there is error:{error}</p>
+    </template>
+    </lightning-card>
+</template>

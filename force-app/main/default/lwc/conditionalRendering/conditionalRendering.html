@@ -1,0 +1,13 @@
+<template>
+   <lightning-card title="This the how we can do the conditional rendering">
+    <lightning-button label="Show component" onclick={clickhandler}></lightning-button>
+    <template lwc:if={isvisible}>
+        <lightning-card  title="Hello">
+           <template for:each={myobject} for:item="item">
+      <p key={item.key}>{item.fname}==>{item.phone}</p>
+                    
+           </template>
+        </lightning-card>
+</template>
+   </lightning-card> 
+</template>

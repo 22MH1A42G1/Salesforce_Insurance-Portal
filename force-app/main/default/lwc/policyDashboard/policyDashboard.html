@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Available Policies">
+        <template if:true={policies}>
+            <lightning-datatable
+                key-field="Id"
+                data={policies}
+                columns={columns}
+                hide-checkbox-column
+                onrowaction={handleRowAction}
+                class="custom-datatable"
+            ></lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-p-around_small">
+                Error fetching policies: {error.message}
+            </p>
+        </template>
+    </lightning-card>
+
+    <!-- Modal -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title slds-hyphenate">Policy Details</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-record-view-form 
+                        record-id={selectedRecordId} 
+                        object-api-name="Policy__c"
+                    >
+                        <div class="slds-box slds-theme_default">
+                            <lightning-output-field field-name="Name"></lightning-output-field>
+                            <lightning-output-field field-name="Policy_Type__c"></lightning-output-field>
+                            <lightning-output-field field-name="Coverage_Amount__c"></lightning-output-field>
+                            <lightning-output-field field-name="Premium_Amount__c"></lightning-output-field>
+                            <lightning-output-field field-name="Terms_Duration__c"></lightning-output-field>
+                            <lightning-output-field field-name="Description__c"></lightning-output-field>
+                        </div>
+                    </lightning-record-view-form>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
